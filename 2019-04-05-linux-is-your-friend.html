@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Linux is your friend</title>
+  <meta charset="utf-8">
+
+  <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+
+  <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+          font-family: 'Yanone Kaffeesatz';
+          font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .console {
+        color: white;
+        background: black;
+        padding: 5px;
+      }
+  </style>
+
+    <style type="text/css" media="print">
+      .remark-slide {
+          page-break-after: always;
+          page-break-before: always;
+          width: 100%;
+          height: 100%;
+      }
+
+      @media print {
+      .remark-slide-scaler {
+        width: 100% !important;
+        height: 100% !important;
+        transform: scale(1) !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+    <textarea id="source">
+
+
+      class: center, middle
+
+      # Linux is your friend
+
+      ---
+
+      ## cd = change directory / pwd = print working directory
+
+      <img height="250" align="center" src='data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyAgUFVCTElDICctLy9XM0MvL0RURCBTVkcgMS4xLy9FTicgICdodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQnPjxzdmcgY29udGVudD0iJmx0O214ZmlsZSBtb2RpZmllZD0mcXVvdDsyMDE5LTA0LTA5VDEwOjIxOjIxLjU1MVomcXVvdDsgaG9zdD0mcXVvdDt3d3cuZHJhdy5pbyZxdW90OyBhZ2VudD0mcXVvdDtNb3ppbGxhLzUuMCAoWDExOyBMaW51eCB4ODZfNjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS83My4wLjM2ODMuODYgU2FmYXJpLzUzNy4zNiZxdW90OyBldGFnPSZxdW90O1hYbjgzUVdzNzRBZ1NjWkdCQzMzJnF1b3Q7IHZlcnNpb249JnF1b3Q7MTAuNi4wJnF1b3Q7Jmd0OyZsdDtkaWFncmFtIGlkPSZxdW90O1JCY09aT2lJVHFvbDVvX0Nwa0hDJnF1b3Q7IG5hbWU9JnF1b3Q7UGFnZS0xJnF1b3Q7Jmd0OzdWbmJqcHN3RVAyYVBIYkZMWVE4ZG5OcFZMWFNTbm5ZM2FmS0M3UEFDaGprbUV2eTlUWEJCSkIzbzdScWFyZktVNWd6SG15Zk0zaUdNTEVYYWYyRmtqejZqZ0VrRThzSTZvbTluRmlXYWM4ZC90TWcreGFaemV3V0NHa2NpRUU5c0kwUElFQkRvRVVjd0c0MGtDRW1MTTdIb0k5WkJqNGJZWVJTck1iRFhqRVp6NXFURUNSZzY1TkVSaC9qZ0VVQ2RhZE83OWhBSEViZDFLWTdiejBwNlVhTHJld2lFbUExZ096VnhGNVFSTlplcGZVQ2tvYTlqcGcyYnYyQjk3UXlDaG03Sk9CeEVaT0hKM2R6WDN6K2NjZzM2NWVBZnYwazFDaEpVb2dkaThXeWZVY0JCSndSWVNKbEVZYVlrV1RWby9jVWl5eUFaaHFEVy8yWWI0ZzVCMDBPdmdGamV5RXZLUmh5S0dKcElyeXZtREhodEpwYnRHdG9KdjV3cndMYVlVRjlPTFBCTG1rSURZR2RHV2VkRk9HNURKZ0NvM3NlUnlFaExDN0g2eUFpcWNMVHVKNTJmaUdZL3dVVlRFY0Y2MURIN0trSnY1c0s2M25nV2RiaXprZGozeGtaMys4Z3FER2ZoNzQrN0doMWNSb29iQnBLSlo3ZUpMNit4S1pTaWQyYnhOZVgyRllxOGV3bThmVWxWbHVMMyttSTFwTHFZMDJyS0dhd3pjbHgreFh2aEM5cGIwcWdET3J6ck1va2lBRFhGVjJsNktzOVVWNnFRWlBhTlo3Um9EL3R3djQ0YmRQL3ZaRzBMc3hlUjJYeVdwSUtFYit6OXRsckdZYmk5RFhuV3VUdjc1ejBWOHg1NTlJVDIxT2E5T2EvSXBXR1JmbFNpUzJsYjArTzlIU1dkeTl3SUpUUHBQM2hwcncydDQvbmlMNGxWbG1DSk5DUHZxa3pwcy8yWE5YMEdSSjlLZCtMZHNTWjJoVlZ1WmNHNW10SG5LMWZOeUwzY1NXaDJoRTMxNDg0K2Yvc1lxY2ZjWjUyajZvbG4zRVBGTi9BWi9wVmlKbjM5eW9FTi9zdk5FZmY0RU9YdmZvSiZsdDsvZGlhZ3JhbSZndDsmbHQ7L214ZmlsZSZndDsiIGhlaWdodD0iMzYycHgiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9Ii0wLjUgLTAuNSA3MjEgMzYyIiB3aWR0aD0iNzIxcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzLz48Zz48cGF0aCBkPSJNIDM2MCA2MCBMIDM2MCAxMDguNjMiIGZpbGw9Im5vbmUiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxwYXRoIGQ9Ik0gMzYwIDExMy44OCBMIDM1Ni41IDEwNi44OCBMIDM2MCAxMDguNjMgTCAzNjMuNSAxMDYuODggWiIgZmlsbD0iIzAwMDAwMCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHBhdGggZD0iTSAzNjAgNjAgTCAzNjAgODggTCAyMTAgODggTCAyMTAgMTA4LjYzIiBmaWxsPSJub25lIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48cGF0aCBkPSJNIDIxMCAxMTMuODggTCAyMDYuNSAxMDYuODggTCAyMTAgMTA4LjYzIEwgMjEzLjUgMTA2Ljg4IFoiIGZpbGw9IiMwMDAwMDAiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxwYXRoIGQ9Ik0gMzYwIDYwIEwgMzYwIDg4IEwgNjAgODggTCA2MCAxMDguNjMiIGZpbGw9Im5vbmUiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxwYXRoIGQ9Ik0gNjAgMTEzLjg4IEwgNTYuNSAxMDYuODggTCA2MCAxMDguNjMgTCA2My41IDEwNi44OCBaIiBmaWxsPSIjMDAwMDAwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48cGF0aCBkPSJNIDM2MCA2MCBMIDM2MCA4OCBMIDUxMCA4OCBMIDUxMCAxMDguNjMiIGZpbGw9Im5vbmUiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxwYXRoIGQ9Ik0gNTEwIDExMy44OCBMIDUwNi41IDEwNi44OCBMIDUxMCAxMDguNjMgTCA1MTMuNSAxMDYuODggWiIgZmlsbD0iIzAwMDAwMCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHBhdGggZD0iTSAzNjAgNjAgTCAzNjAgODggTCA2NjAgODggTCA2NjAgMTA4LjYzIiBmaWxsPSJub25lIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48cGF0aCBkPSJNIDY2MCAxMTMuODggTCA2NTYuNSAxMDYuODggTCA2NjAgMTA4LjYzIEwgNjYzLjUgMTA2Ljg4IFoiIGZpbGw9IiMwMDAwMDAiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxyZWN0IGZpbGw9IiNmZmZmZmYiIGhlaWdodD0iNjAiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHdpZHRoPSIxMjAiIHg9IjMwMCIgeT0iMCIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM1Ni41LDE4LjUpIj48c3dpdGNoPjxmb3JlaWduT2JqZWN0IGhlaWdodD0iMjIiIHBvaW50ZXItZXZlbnRzPSJhbGwiIHJlcXVpcmVkRmVhdHVyZXM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1NWRzExL2ZlYXR1cmUjRXh0ZW5zaWJpbGl0eSIgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7IiB3aWR0aD0iNiI+PGRpdiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyBmb250LXNpemU6IDIwcHg7IGZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGxpbmUtaGVpZ2h0OiAxLjI7IHZlcnRpY2FsLWFsaWduOiB0b3A7IHdpZHRoOiA2cHg7IHdoaXRlLXNwYWNlOiBub3dyYXA7IG92ZXJmbG93LXdyYXA6IG5vcm1hbDsgdGV4dC1hbGlnbjogY2VudGVyOyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiPjxkaXYgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3RleHQtYWxpZ246aW5oZXJpdDt0ZXh0LWRlY29yYXRpb246aW5oZXJpdDsiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIj4vPC9kaXY+PC9kaXY+PC9mb3JlaWduT2JqZWN0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIGZvbnQtc2l6ZT0iMjBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMyIgeT0iMjEiPi88L3RleHQ+PC9zd2l0Y2g+PC9nPjxwYXRoIGQ9Ik0gMzYwIDE3NSBMIDM2MCAxOTUgTCAzNjAgMTgwIEwgMzYwIDE5My42MyIgZmlsbD0ibm9uZSIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHBhdGggZD0iTSAzNjAgMTk4Ljg4IEwgMzU2LjUgMTkxLjg4IEwgMzYwIDE5My42MyBMIDM2My41IDE5MS44OCBaIiBmaWxsPSIjMDAwMDAwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48cmVjdCBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjYwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiB3aWR0aD0iMTIwIiB4PSIzMDAiIHk9IjExNSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzNC41LDEzMy41KSI+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgZm9udC1zaXplPSIyMHB4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNSIgeT0iMjEiPmhvbWU8L3RleHQ+PC9nPjxwYXRoIGQ9Ik0gMzYwIDI2MCBMIDM2MCAyODEgTCAyNDAgMjgxIEwgMjQwIDI5NC42MyIgZmlsbD0ibm9uZSIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHBhdGggZD0iTSAyNDAgMjk5Ljg4IEwgMjM2LjUgMjkyLjg4IEwgMjQwIDI5NC42MyBMIDI0My41IDI5Mi44OCBaIiBmaWxsPSIjMDAwMDAwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48cGF0aCBkPSJNIDM2MCAyNjAgTCAzNjAgMjgxIEwgNDgwIDI4MSBMIDQ4MCAyOTQuNjMiIGZpbGw9Im5vbmUiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjxwYXRoIGQ9Ik0gNDgwIDI5OS44OCBMIDQ3Ni41IDI5Mi44OCBMIDQ4MCAyOTQuNjMgTCA0ODMuNSAyOTIuODggWiIgZmlsbD0iIzAwMDAwMCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PHJlY3QgZmlsbD0iI2ZmZmZmZiIgaGVpZ2h0PSI2MCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgd2lkdGg9IjEyMCIgeD0iMzAwIiB5PSIyMDAiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMTYuNSwyMTguNSkiPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIGZvbnQtc2l6ZT0iMjBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDMiIHk9IjIxIj52LmJlemFyYXM8L3RleHQ+PC9nPjxyZWN0IGZpbGw9IiNmZmZmZmYiIGhlaWdodD0iNjAiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHdpZHRoPSIxMjAiIHg9IjE4MCIgeT0iMzAxIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwLjUsMzE5LjUpIj48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhIiBmb250LXNpemU9IjIwcHgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ5IiB5PSIyMSI+RG93bmxvYWRzPC90ZXh0PjwvZz48cmVjdCBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjYwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiB3aWR0aD0iMTIwIiB4PSIxNTAiIHk9IjExNSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5Mi41LDEzMy41KSI+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgZm9udC1zaXplPSIyMHB4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNyIgeT0iMjEiPm1udDwvdGV4dD48L2c+PHJlY3QgZmlsbD0iI2ZmZmZmZiIgaGVpZ2h0PSI2MCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgd2lkdGg9IjEyMCIgeD0iMCIgeT0iMTE1Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDYuNSwxMzMuNSkiPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIGZvbnQtc2l6ZT0iMjBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTMiIHk9IjIxIj5ldGM8L3RleHQ+PC9nPjxyZWN0IGZpbGw9IiNmZmZmZmYiIGhlaWdodD0iNjAiIHBvaW50ZXItZXZlbnRzPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHdpZHRoPSIxMjAiIHg9IjYwMCIgeT0iMTE1Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjQ1LjUsMTMzLjUpIj48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhIiBmb250LXNpemU9IjIwcHgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE0IiB5PSIyMSI+dmFyPC90ZXh0PjwvZz48cmVjdCBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjYwIiBwb2ludGVyLWV2ZW50cz0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiB3aWR0aD0iMTIwIiB4PSI0NTAiIHk9IjExNSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5NS41LDEzMy41KSI+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgZm9udC1zaXplPSIyMHB4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNCIgeT0iMjEiPnVzcjwvdGV4dD48L2c+PHJlY3QgZmlsbD0iI2ZmZmZmZiIgaGVpZ2h0PSI2MCIgcG9pbnRlci1ldmVudHM9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgd2lkdGg9IjEyMCIgeD0iNDIwIiB5PSIzMDEiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NDMuNSwzMTkuNSkiPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIGZvbnQtc2l6ZT0iMjBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzYiIHk9IjIxIj5Qcm9qZWN0czwvdGV4dD48L2c+PC9nPjwvc3ZnPg=='>
+
+      Examples:
+       - pwd: <span class="console">/home/v.bezaras</span>
+       - cd /home/v.bezaras/Projects
+       - cd Projects
+       - cd /home/v.bezaras/Downloads
+       - cd .
+       - cd ../Projects
+       - pwd: <span class="console">/home/v.bezaras/Projects</span>
+       - cd /mnt/c/users/vbyazarene/Documents/
+
+      ---
+
+      ## ls = list
+       
+       Examples:
+       - ls
+       - ls -l
+       - ls -lh
+       - ls -l /home/v.bezaras
+       - ls -l ..
+
+      ---
+
+      ## less / zless
+       
+       - less file.txt
+       - zless file.txt.gz
+       - less -N file.txt - with line numbers
+       - less -S file.txt - no line breaks
+
+
+       #### Commands during view:
+       - q - quit
+       - /text - search
+       - n - next occurence
+       - N - previous occurence
+
+      ---
+
+      ## grep = global regular expression print / zgrep
+       
+       Examples:
+       - grep "word" file.txt - lines containing word
+       - grep -v "word" file.txt - lines not containing word
+       - grep -i "WORD" file.txt - ignore case
+
+
+       #### Pipe: |
+
+       program1 | program2 | program3
+
+       Example: ls -lh | grep M | less
+
+      ---
+
+      ## xmllint
+
+      Examples:
+       - xmllint --format file.xml | less
+       - zless file.zip | xmllint --format - | less
+
+      #### Output redirection: >
+       - command > file.txt
+       - xmllint --format file.xml > formatted.xml
+       - xmllint --format file.xml > /home/v.bezaras/Projects/xmlfile.xml
+
+      ---
+
+      ## XPath
+
+      Examples:
+       - xmllint --xpath "//Hotel" file.xml
+       - xmllint --xpath "//Hotel[@Code='123']" file.xml
+
+      Syntax:
+       - / - search directly under current node
+       - // - search anywhere under current node
+       - [] - condition (can be read as "which")
+       - @ - attribute
+       - . - current node
+       - text() - node value
+
+      Examples:
+       - //Hotel - find everywhere all hotel nodes
+       - //Hotel[@Code='123'] - find everywhere all hotels which has attribute code equals 123
+       - (echo "&amp;lt;x>" && xmllint ... && echo "&amp;lt;/x>") | xmllint --format -
+       - xmllint --xpath "//ZUSCHLAEGE/ZUSCHLAG1/PREIS[text() < '10.00']"
+
+      ---
+
+      class: middle, center
+
+      # End
+
+    </textarea>
+    <script>var slideshow = remark.create();</script>
+</body>
+</html>
