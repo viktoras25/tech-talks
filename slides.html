@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New PHP Features</title>
+  <meta charset="utf-8">
+  <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+          font-family: 'Yanone Kaffeesatz';
+          font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+  </style>
+
+    <style type="text/css" media="print">
+      .remark-slide {
+          page-break-after: always;
+          page-break-before: always;
+          width: 100%;
+          height: 100%;
+      }
+
+      @media print {
+      .remark-slide-scaler {
+        width: 100% !important;
+        height: 100% !important;
+        transform: scale(1) !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+    <textarea id="source">
+
+
+      class: center, middle
+
+      # Do not even DRY
+      <small>(Reads: Do not even try)</small>
+
+      ---
+
+      class: center, middle
+
+      # _DRY: Don't Repeat Yourself_
+
+      ### - The code must only be in one single place
+      ### - Remove duplication
+      ### - Extract repeating code into Helpers
+
+      ---
+
+      class: center, middle
+
+      # <strong>WRONG</strong>
+
+      ---
+
+      class: center, middle
+
+      ## Every piece of **knowledge** must have a single, unambiguous, authoritative representation within a system
+
+      ---
+
+      class: middle
+
+      <b>Dave Thomas</b>: Don't Repeat Yourself (or DRY) is probably one of the most misunderstood parts of the book.
+       
+      <b>Bill Venners</b>: How is DRY misunderstood and what is the correct way to understand it?
+       
+      <b>Dave Thomas</b>: Most people take DRY to mean you shouldn't duplicate code. That's not its intention. The idea behind DRY is far grander than that.
+
+      <i><small>http://www.artima.com/intv/dry.html</small></i>
+
+      ---
+
+      class: center, middle
+
+      ### "Maybe we're writing a client-server application, using different languages on the client and server, and need to represent some shared structure on both."
+
+      ### "Perhaps we need a class whose attributes mirror the schema of a database table."
+      </p>
+
+      <p style="text-align: right">The Pragmatic Programmer: From Journeyman to Master.</p>
+
+      ---
+
+      class: center, middle
+
+      <blockquote>
+        <cite>"What, you say?  Avoid Helper Classes!?!  But they are so useful! I say: they are nearly always an example of laziness."</cite>
+        <a href="https://blogs.msdn.microsoft.com/nickmalik/2005/09/06/are-helper-classes-evil/">https://blogs.msdn.microsoft.com/nickmalik/2005/09/06/are-helper-classes-evil/</a>
+      </blockquote>
+
+      <blockquote>
+        <cite>"Having the word ‘Helper’ in a class name is a code smell."</cite>
+        <footer><a href="http://www.robbagby.com/posts/helper-classes-are-a-code-smell/">http://www.robbagby.com/posts/helper-classes-are-a-code-smell/</a></footer>
+      </blockquote>
+
+      <blockquote>
+        <cite>OOP Anti-Patterns: Utility or Helper Classes</cite>
+        <footer><a href="http://www.ralin.net/articles/oop-anti-patterns-utility-or-helper-classes/">http://www.ralin.net/articles/oop-anti-patterns-utility-or-helper-classes/</a></footer>
+      </blockquote>
+
+      <blockquote>
+        <cite>"Duplication is far cheaper than the wrong abstraction."</cite><br>
+        <cite>"Prefer duplication over the wrong abstraction."</cite>
+        <footer><a href="https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction">https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction</a></footer>
+      </blockquote>
+
+      ---
+
+      class: center, middle
+
+      ## Helpers are not DRY
+
+      <img src="http://i.imgur.com/VMQqhyA.png"/>
+
+      ---
+
+      ## OOP Quality Metrics
+
+       - ### Cohesion
+       - ### Coupling
+       - ### Connascence
+
+      ---
+
+      ## Cohesion
+       - Relations within a module
+       - Types
+         - **Coincidental**
+         - **Logical**
+         - Temporal
+         - Procedural
+         - Communicational
+         - Sequential
+         - **Functional**
+
+      ```php
+      <?php                               |    <?php
+                                          |         
+      // Good - Functional cohesion       |    // Bad - Logical Cohesion
+                                          |
+      class Rectangle {                   |    class AreaHelper {  
+        private $w;                       |        public function rectangle($w, $h) {
+        private $h;                       |            return $w * $h;
+                                          |        }
+        public function getArea()         |                
+        {                                 |        public function square($s) {
+            return $this->w * $this->h;   |            return self::rectangle($s, $s);
+        }                                 |        }
+      }                                   |    }
+
+      ```
+
+      ---
+
+      ## Coupling
+       - Relations between modules
+       - Types
+         - **Content**
+         - **Common**
+         - External
+         - Control
+         - Stamp
+         - **Data**
+         - **Message**
+         - No
+
+      ```php
+      <?php                                | <?php
+                                           |      
+      class Client {                       | // Bad - Common coupling
+        // Good - Message coupling         |
+        public function send(Request $r) { | class Rectangle {
+            ...                            |   public function square() {
+            return Response();             |     return AreaHelper::rectangle($w, $h);
+        }                                  |   }
+        // Ok - Data coupling              | }           
+        public function getData($param) {  | class Square {
+            ...                            |   public function square() {
+            return [...];                  |     return AreaHelper::square($s);
+        }                                  |   }
+      }                                    | }
+
+      ```
+
+      ---
+
+      ## Connascence
+
+       - Complexity caused by dependency relationships
+       - Types
+         - **Name**
+         - Type
+         - **Meaning**
+         - Position
+         - **Algorithm**
+         - Execution
+         - Timing
+         - Values
+         - Identity
+
+      ```php
+      // Connascence of name
+      new Rectangle();
+
+      // Connascence of meaning
+      function posInString() { ...; return -1; }
+      $response = request("BA", $hotel);
+      
+      // Connascence of algorithm
+      $hash = password_hash('qwe', PASSWORD_BCRYPT);
+      password_verify('qwe', $hash);
+      // $2y$10$G.MemTpNezbl1vjo/Tv7Puotii9wbfSNba33YwazQwj1Yn1nfN6Q2
+      ```
+
+      ---
+
+      <b> Changing two identical independent parts of code is trivial, changing two tightly coupled parts of code is much harder.</b>
+
+      ```php
+      // Connascence of algorithm. Bad duplication
+      
+      class A {
+        public function encode($text) { return rot($text, 13); }
+        public function decode($text) { return rot($text, -13); }
+      }
+
+      class B {
+        public function encode($text) { return rot($text, 13); }
+        public function decode($text) { return rot($text, -13); }
+      }
+
+      $encoded = (new A)->encode('text');
+      (new B)->decode($encoded);
+      ```
+
+      ```php
+      // No coupling. No connascence. Good duplication.
+
+      class HotelImport {
+        public function parseXml($xml) { return new SimpleXmlElement($xml); }
+        public function import($data) { $this->parseXml($data); ... }
+      }
+
+      class FlightImport {
+        public function parseXml($xml) { return new SimpleXmlElement($xml); }
+        public function import($data) { $this->parseXml($data); ... }
+      }
+
+      (new HotelImport)->import('<Hotel/>');
+      (new FlightImport)->import('<Flight/>');
+      ```
+
+      ---
+
+      ##
+
+      ### - Forget about DRY
+      ### - Helpers belong to trash bin
+      ### - Cohesion <b>&uarr;</b>
+      ### - Coupling <b>&darr;</b>
+      ### - Connascence <b>&darr;</b>
+      
+
+      - https://www.youtube.com/watch?v=Ip2o4vbAK3s
+      - https://www.youtube.com/watch?v=HQXVKHoUQxY
+
+      ---
+
+      class: middle, center
+
+      # End
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+  </script>
+</body>
+</html>
