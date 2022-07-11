@@ -15,6 +15,18 @@ h1, h2, h3 {
     font-family: 'Ubuntu Mono', monospace;
 }
 
+.hljs-default {
+    background: #F8F8F8;
+}
+
+a:visited {
+    color: #0000EE;
+}
+
+li {
+    line-height: 1.6em;
+}
+
 /*@page {*/
 /*    size: A4 landscape;*/
 /*}*/

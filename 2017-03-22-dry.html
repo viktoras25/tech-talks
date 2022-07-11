@@ -5,25 +5,32 @@
   <title>Do not even "DRY"</title>
   <meta charset="utf-8">
 
-  <script type="text/javascript" src="./remark-latest.min.js"></script>
+  <script type="text/javascript" src="./remark-latest.min.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded', () => remark.create());</script>
 
   <link href="./app.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
     <textarea id="source">
-
-
       class: center, middle
 
       # Do not even DRY
-      <small>(Reads: Do not even try)</small>
+
+      <br>
+      <div style="line-height: 1.5em;" class="remark-code">
+        <div>viktoras bezaras</div>
+        <div><a href="">https://viktoras.de</a></div>
+        <div><a href="">mail@viktoras.de</a></div>
+        <div>2017-03-22</div>
+      </div>
+
 
       ---
 
       class: center, middle
 
-      # _DRY: Don't Repeat Yourself_
+      # DRY: Don't Repeat Yourself
 
       ### - The code must only be in one single place
       ### - Remove duplication
@@ -33,13 +40,28 @@
 
       class: center, middle
 
-      # <strong>WRONG</strong>
+      <h1 style="font-size: 70pt">WRONG</div>
 
       ---
 
       class: center, middle
 
-      ## Every piece of **knowledge** must have a single, unambiguous, authoritative representation within a system
+      ## "Every piece of **knowledge** must have a single, unambiguous, authoritative representation within a system"
+
+      <img src="./images/2017-03-22-dry/pragmatic-programmer.png" style="width: 40%"/>
+
+      ---
+
+      class: center, middle
+
+      ## What is duplication
+
+      #### "Maybe we're writing a client-server application, using different languages on the client and server, and need to represent some shared structure on both."
+
+      #### "Perhaps we need a class whose attributes mirror the schema of a database table."
+
+
+      <p style="text-align: right">The Pragmatic Programmer: From Journeyman to Master</p>
 
       ---
 
@@ -57,35 +79,24 @@
 
       class: center, middle
 
-      ### "Maybe we're writing a client-server application, using different languages on the client and server, and need to represent some shared structure on both."
-
-      ### "Perhaps we need a class whose attributes mirror the schema of a database table."
-      </p>
-
-      <p style="text-align: right">The Pragmatic Programmer: From Journeyman to Master.</p>
-
-      ---
-
-      class: center, middle
-
       <blockquote>
-        <cite>"What, you say?  Avoid Helper Classes!?!  But they are so useful! I say: they are nearly always an example of laziness."</cite>
+        "What, you say?  Avoid Helper Classes!?!  But they are so useful! I say: they are nearly always an <strong>example of laziness</strong>."
         <a href="https://blogs.msdn.microsoft.com/nickmalik/2005/09/06/are-helper-classes-evil/">https://blogs.msdn.microsoft.com/nickmalik/2005/09/06/are-helper-classes-evil/</a>
       </blockquote>
 
       <blockquote>
-        <cite>"Having the word ‘Helper’ in a class name is a code smell."</cite>
+        "Having the word ‘Helper’ in a class name is a <strong>code smell</strong>."
         <footer><a href="http://www.robbagby.com/posts/helper-classes-are-a-code-smell/">http://www.robbagby.com/posts/helper-classes-are-a-code-smell/</a></footer>
       </blockquote>
 
       <blockquote>
-        <cite>OOP Anti-Patterns: Utility or Helper Classes</cite>
+        <strong>OOP Anti-Patterns</strong>: Utility or Helper Classes
         <footer><a href="http://www.ralin.net/articles/oop-anti-patterns-utility-or-helper-classes/">http://www.ralin.net/articles/oop-anti-patterns-utility-or-helper-classes/</a></footer>
       </blockquote>
 
       <blockquote>
-        <cite>"Duplication is far cheaper than the wrong abstraction."</cite><br>
-        <cite>"Prefer duplication over the wrong abstraction."</cite>
+        "Duplication is far cheaper than the wrong abstraction."<br>
+        "Prefer duplication over the wrong abstraction."
         <footer><a href="https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction">https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction</a></footer>
       </blockquote>
 
@@ -95,7 +106,7 @@
 
       ## Helpers are not DRY
 
-      <img src="http://i.imgur.com/VMQqhyA.png"/>
+      <img src="./images/2017-03-22-dry/helpers-bin.png"/>
 
       ---
 
@@ -108,19 +119,16 @@
       ---
 
       ## Cohesion
-       - Relations within a module
-       - Types
-         - **Coincidental**
-         - **Logical**
-         - Temporal
-         - Procedural
-         - Communicational
-         - Sequential
-         - **Functional**
+      Degree to which the elements inside a module belong together
+
+       - **Functional** (best)
+       - ...
+       - **Logical**
+       - **Coincidental** (worst)
+
+      <br>
 
       ```php
-      <?php                               |    <?php
-                                          |         
       // Good - Functional cohesion       |    // Bad - Logical Cohesion
                                           |
       class Rectangle {                   |    class AreaHelper {  
@@ -138,32 +146,29 @@
       ---
 
       ## Coupling
-       - Relations between modules
-       - Types
-         - **Content**
-         - **Common**
-         - External
-         - Control
-         - Stamp
-         - **Data**
-         - **Message**
-         - No
+      Degree of interdependence between software modules
+
+       - No (best)
+       - **Data/Message**
+       - ...
+       - **Common**
+       - **Content** (worst)
 
       ```php
-      <?php                                | <?php
-                                           |      
-      class Client {                       | // Bad - Common coupling
-        // Good - Message coupling         |
-        public function send(Request $r) { | class Rectangle {
-            ...                            |   public function square() {
-            return Response();             |     return AreaHelper::rectangle($w, $h);
-        }                                  |   }
-        // Ok - Data coupling              | }           
-        public function getData($param) {  | class Square {
-            ...                            |   public function square() {
-            return [...];                  |     return AreaHelper::square($s);
-        }                                  |   }
-      }                                    | }
+
+      // Good - Data/Message coupling      | // Bad - Common coupling
+                                           |
+      class Client {                       | class Rectangle {
+        public function send(Request $r) { |   public function square() {
+            ...                            |     return AreaHelper::rectangle($w, $h);
+            return Response();             |   }
+        }                                  | }
+      }                                    | class Square {
+                                           |   public function square() {
+                                           |     return AreaHelper::square($s);
+                                           |   }
+                                           | }
+                                           |
 
       ```
 
@@ -171,17 +176,15 @@
 
       ## Connascence
 
-       - Complexity caused by dependency relationships
-       - Types
-         - **Name**
-         - Type
-         - **Meaning**
-         - Position
-         - **Algorithm**
-         - Execution
-         - Timing
-         - Values
-         - Identity
+      When a change in one module would require the other to be modified.
+
+       - **Name** (best)
+       - **Meaning**
+       - **Algorithm**
+       - Order of execution
+       - Identity (worst)
+
+      <br>
 
       ```php
       // Connascence of name
@@ -194,7 +197,6 @@
       // Connascence of algorithm
       $hash = password_hash('qwe', PASSWORD_BCRYPT);
       password_verify('qwe', $hash);
-      // $2y$10$G.MemTpNezbl1vjo/Tv7Puotii9wbfSNba33YwazQwj1Yn1nfN6Q2
       ```
 
       ---
@@ -204,59 +206,98 @@
       ```php
       // Connascence of algorithm. Bad duplication
       
-      class A {
-        public function encode($text) { return rot($text, 13); }
-        public function decode($text) { return rot($text, -13); }
+      class Sender {
+        public function encode(string $text) {
+          return rot($text, 13);
+        }
+
+        public function decode(string $text) {
+          return rot($text, -13);
+        }
       }
 
-      class B {
-        public function encode($text) { return rot($text, 13); }
-        public function decode($text) { return rot($text, -13); }
+
+      class Receiver {
+        public function encode(string $text) {
+          return rot($text, 13);
+        }
+
+        public function decode(string $text) {
+          return rot($text, -13);
+        }
       }
 
-      $encoded = (new A)->encode('text');
-      (new B)->decode($encoded);
+
+      $encoded = (new Sender())->encode('text');
+      (new Receiver())->decode($encoded);
       ```
+
+      ---
+
+      <b> Changing two identical independent parts of code is trivial, changing two tightly coupled parts of code is much harder.</b>
 
       ```php
       // No coupling. No connascence. Good duplication.
 
       class HotelImport {
-        public function parseXml($xml) { return new SimpleXmlElement($xml); }
-        public function import($data) { $this->parseXml($data); ... }
+        public function parseXml($xml) {
+          return new SimpleXmlElement($xml);
+        }
+
+        public function import($data) {
+          $this->parseXml($data);
+        }
       }
+
 
       class FlightImport {
-        public function parseXml($xml) { return new SimpleXmlElement($xml); }
-        public function import($data) { $this->parseXml($data); ... }
+        public function parseXml($xml) {
+          return new SimpleXmlElement($xml);
+        }
+
+        public function import($data) {
+          $this->parseXml($data);
+        }
       }
 
-      (new HotelImport)->import('<Hotel/>');
-      (new FlightImport)->import('<Flight/>');
+
+      (new HotelImport())->import('<Hotel/>');
+      (new FlightImport())->import('<Flight/>');
       ```
 
       ---
 
-      ##
+      # Takeaways
 
-      ### - Forget about DRY
-      ### - Helpers belong to trash bin
-      ### - Cohesion <b>&uarr;</b>
-      ### - Coupling <b>&darr;</b>
-      ### - Connascence <b>&darr;</b>
-      
+      - Forget about DRY
+      - Helpers belong to trash bin
+      - Aim for high cohesion
+      - Aim for low coupling
+      - Aim for low connascence
 
-      - https://www.youtube.com/watch?v=Ip2o4vbAK3s
-      - https://www.youtube.com/watch?v=HQXVKHoUQxY
+
+      <br>
+      Great videos about connascence:
+
+      - Codemania 2015: Josh Robb - Connascence & Coupling
+        https://www.youtube.com/watch?v=Ip2o4vbAK3s
+
+      - ETE 2012 - Jim Weirich - Connascence Examined
+        https://www.youtube.com/watch?v=HQXVKHoUQxY
 
       ---
 
-      class: middle, center
+      class: middle
 
-      # End
+      <div style="text-align: center">
+        <h1>Please ask questions</h1>
+
+        <img src="./images/2017-03-22-dry/dry-link.svg"/>
+        <div>
+          Slides
+        </div>
+      </div>
 
     </textarea>
-
-    <script>var slideshow = remark.create();</script>
 </body>
 </html>
